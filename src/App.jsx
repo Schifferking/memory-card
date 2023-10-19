@@ -1,35 +1,71 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import "./App.css";
+import Card from "./components/card";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [pokemons, setPokemons] = useState([]);
+
+  // highest pokemon id with sprite at the moment is 1010
+  const maxId = 1010;
+  const cardCount = 12;
+
+  function getRandomNumber(min, max) {
+    const actualMin = Math.ceil(min);
+    const actualMax = Math.floor(max);
+    return Math.floor(Math.random() * (actualMax - actualMin + 1) + actualMin);
+  }
+
+  function shuffleCards() {
+    const shuffledCards = [...pokemons];
+    let currentIndex = shuffledCards.length;
+    let randomIndex;
+    while (currentIndex > 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      [shuffledCards[currentIndex], shuffledCards[randomIndex]] = [
+        shuffledCards[randomIndex],
+        shuffledCards[currentIndex],
+      ];
+    }
+    setPokemons(shuffledCards);
+  }
+
+  useEffect(() => {
+    function getPokemon(id) {
+      return fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+        .then((response) => response.json())
+        .then((poke) => {
+          return poke;
+        });
+    }
+
+    const pokePromises = Array.from({ length: cardCount }, () => {
+      const randomId = getRandomNumber(1, maxId);
+      return getPokemon(randomId);
+    });
+
+    const pokes = Promise.all(pokePromises);
+
+    pokes.then((pokesData) => setPokemons(pokesData));
+  }, []);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <ul>
+        {pokemons.map((pokemon) => {
+          return (
+            <Card
+              key={pokemon.name}
+              text={pokemon.name}
+              imageUrl={pokemon.sprites["front_default"]}
+              onClick={shuffleCards}
+            ></Card>
+          );
+        })}
+      </ul>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
