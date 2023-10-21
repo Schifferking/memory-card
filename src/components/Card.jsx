@@ -1,4 +1,4 @@
-import "../styles/card.css";
+import "../styles/Card.css";
 
 function Card({ text = "", imageUrl = "", onClick = "" }) {
   return (

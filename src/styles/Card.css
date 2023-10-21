@@ -1,0 +1,13 @@
+ul {
+  padding-left: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 3%;
+}
+
+.card {
+  padding: 0.5em;
+  border: 1px solid #000000;
+}
