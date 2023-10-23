@@ -9,7 +9,4 @@ More information here: [The Odin Project's project page](https://www.theodinproj
 ## To-do
 
 - Think in features (select generation(s), change card count, etc. )
-- components needed
-  1. A scoreboard (current score and best score.
-     Define a score state variable.)
-- a function (or functions) that store the last card clicked, check when the user clicks another one if its the same. Based on this, it either increases the score or resets the score to 0 and "ends" the game.
+- Improve style, UI and UX

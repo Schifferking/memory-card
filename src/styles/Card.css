@@ -8,6 +8,17 @@ ul {
 }
 
 .card {
+  font-family: "PizelifySans-VariableFont_wght";
+  font-size: 20px;
+  font-weight: bold;
   padding: 0.5em;
-  border: 1px solid #000000;
+  border: 5px double #b91c1c;
+  border-radius: 5px;
+  background-color: #eff6ff;
+  color: #7f1d1d;
+}
+
+.card:hover {
+  border: 5px double #172554;
+  transition-duration: 0.4s;
 }

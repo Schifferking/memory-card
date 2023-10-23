@@ -1,5 +1,8 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "PixelifySans-VariableFont_wght", Inter, system-ui, Avenir,
+    Helvetica, Arial, sans-serif;
+  src: local("PixelifySans-VariableFont_wght"),
+    url(./assets/fonts/PixelifySans-VariableFont_wght.ttf), format("ttf");
   line-height: 1.5;
   font-weight: 400;
 
@@ -29,11 +32,13 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #fee2e2;
 }
 
 h1 {
   font-size: 2.2em;
   line-height: 1.1;
+  color: #7f1d1d;
 }
 
 button {
@@ -66,4 +71,13 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+h1,
+h2 {
+  font-family: "PizelifySans-VariableFont_wght";
+}
+
+h2 {
+  color: #7f1d1d;
 }
